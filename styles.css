@@ -6809,3 +6809,45 @@ html {
       grid-area: span 1 / span 2 / span 1 / span 2;
     }
   }
+  
+  /* Mobile-specific fixes for logo and header */
+  @media screen and (max-width: 479px) {
+    .cosmos-logo {
+      max-width: 80px; /* Smaller logo for mobile */
+      height: auto;
+      margin: 0 auto;
+    }
+    
+    .nav-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    
+    .logo-wrapper {
+      text-align: center;
+    }
+    
+    .tag.margin-bottom-1p5vw.mobile-margin-bottom-5vw {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    
+    .h1-gradient {
+      font-size: 36px;
+      line-height: 1.2;
+      text-align: center;
+    }
+    
+    .gray-text.subhead {
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.5;
+      margin: 0 15px;
+    }
+    
+    .cosmos-wrapper {
+      padding-top: 20px;
+    }
+  }
