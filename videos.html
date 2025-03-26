@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>CosmoCryptoVentures: Video Showcase</title>
+    <meta content="Watch our blockchain development projects and educational content showcasing our expertise in cryptocurrency and DeFi solutions."
+        name="description" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="./styles.css" rel="stylesheet" type="text/css" />
+    <link href="/favicon.png" rel="shortcut icon" type="image/x-icon" />
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f0f19;
+            background: linear-gradient(180deg, #0f0f19 0%, #141421 100%);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Add orbits effect in background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(92, 37, 231, 0.05) 0%, rgba(92, 37, 231, 0) 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 80%, rgba(157, 110, 255, 0.05) 0%, rgba(157, 110, 255, 0) 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        header {
+            background-color: rgba(15, 15, 25, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+        }
+        
+        .logo-wrapper img {
+            height: 40px;
+        }
+        
+        .nav-links-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .nav-button {
+            background: linear-gradient(135deg, #9d6eff 0%, #5c25e7 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(157, 110, 255, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(157, 110, 255, 0.5);
+            background: linear-gradient(135deg, #b48fff 0%, #6b34f5 100%);
+        }
+        
+        /* Mobile Menu Styles */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 22px;
+            cursor: pointer;
+            z-index: 1000;
+            position: relative;
+        }
+        
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: translateY(9.5px) rotate(45deg);
+            background-color: #9d6eff;
+        }
+        
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: translateY(-9.5px) rotate(-45deg);
+            background-color: #9d6eff;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(15, 15, 25, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            transform: translateY(-10px);
+        }
+        
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .mobile-menu-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .mobile-nav-button {
+            background: linear-gradient(135deg, #9d6eff 0%, #5c25e7 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(157, 110, 255, 0.3);
+            margin-top: 20px;
+            text-decoration: none;
+        }
+        
+        .mobile-nav-button:hover {
+            background: linear-gradient(135deg, #b48fff 0%, #6b34f5 100%);
+            box-shadow: 0 6px 20px rgba(157, 110, 255, 0.5);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .nav-links-wrapper {
+                display: none;
+            }
+            
+            .hamburger-menu {
+                display: flex;
+            }
+        }
+        
+        .video-showcase {
+            padding: 120px 30px 30px;
+        }
+        
+        h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #9d6eff, #5c25e7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .video-card {
+            background: rgba(25, 25, 40, 0.7);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(157, 110, 255, 0.3);
+        }
+        
+        .video-thumb {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .video-thumb video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(157, 110, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .play-icon:after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left: 12px solid white;
+            margin-left: 4px;
+        }
+        
+        .video-info {
+            padding: 15px;
+        }
+        
+        .video-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: white;
+        }
+        
+        .video-description {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+        }
+        
+        .video-lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .video-lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            width: 80%;
+            max-width: 900px;
+            position: relative;
+        }
+        
+        .close-lightbox {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-lightbox:hover {
+            color: #9d6eff;
+        }
+        
+        .lightbox-video {
+            width: 100%;
+            max-height: 80vh;
+        }
+        
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .lightbox-content {
+                width: 95%;
+            }
+            
+            /* Fix hover effect on mobile */
+            .video-card:hover {
+                transform: none;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            }
+            
+            .video-card:active {
+                transform: translateY(-2px);
+                transition: transform 0.1s;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo-wrapper">
+                    <a href="index.html">
+                        <img src="/favicon.png" alt="CosmoCryptoVentures Logo" class="cosmos-logo">
+                    </a>
+                </div>
+                <!-- Navigation menu with only Contact Us button -->
+                <div class="nav-links-wrapper">
+                    <a href="index.html#contact" class="nav-button">Contact Us</a>
+                </div>
+                <!-- Mobile hamburger menu -->
+                <div class="hamburger-menu">
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                </div>
+                <!-- Mobile menu overlay -->
+                <div class="mobile-menu">
+                    <div class="mobile-menu-content">
+                        <a href="index.html#contact" class="mobile-nav-button">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="video-showcase">
+        <h1>Featured Videos</h1>
+        
+        <div class="video-grid">
+            <!-- Wallet Tracker Video -->
+            <div class="video-card">
+                <div class="video-thumb" data-video="/public/Wallet Tracker.mp4">
+                    <video muted preload="metadata">
+                        <source src="/public/Wallet Tracker.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Wallet Tracker</h3>
+                    <p class="video-description">Track cryptocurrency wallets and monitor transactions in real-time with our advanced tracking solution.</p>
+                </div>
+            </div>
+
+            <!-- Coin Info Video -->
+            <div class="video-card">
+                <div class="video-thumb" data-video="/public/Coin info.mp4">
+                    <video muted preload="metadata">
+                        <source src="/public/Coin info.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Coin Info</h3>
+                    <p class="video-description">Get detailed information about cryptocurrencies including market data, price movements and trading volume.</p>
+                </div>
+            </div>
+
+            <!-- ETH Coin Tracker Video -->
+            <div class="video-card">
+                <div class="video-thumb" data-video="/public/New Eth Coin tracker.mp4">
+                    <video muted preload="metadata">
+                        <source src="/public/New Eth Coin tracker.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">ETH Coin Tracker</h3>
+                    <p class="video-description">Track Ethereum-based tokens with our specialized monitoring system for ERC-20 and ERC-721 assets.</p>
+                </div>
+            </div>
+
+            <!-- Shill Post Generator Video -->
+            <div class="video-card">
+                <div class="video-thumb" data-video="/public/Shill post generator.mp4">
+                    <video muted preload="metadata">
+                        <source src="/public/Shill post generator.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Shill Post Generator</h3>
+                    <p class="video-description">Automated content generation tool for crypto marketing campaigns and community engagement.</p>
+                </div>
+            </div>
+
+            <!-- Holder and Coin Data Video -->
+            <div class="video-card">
+                <div class="video-thumb" data-video="/public/Holder and Coin data.mp4">
+                    <video muted preload="metadata">
+                        <source src="/public/Holder and Coin data.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Holder and Coin Data</h3>
+                    <p class="video-description">Comprehensive analytics on token holders and distribution patterns for crypto projects.</p>
+                </div>
+            </div>
+
+            <!-- Twitter Bot Video -->
+            <div class="video-card">
+                <div class="video-thumb" data-video="/public/Twitter Bot.mp4">
+                    <video muted preload="metadata">
+                        <source src="/public/Twitter Bot.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Twitter Bot</h3>
+                    <p class="video-description">Automated Twitter engagement solution for crypto projects to increase visibility and community interaction.</p>
+                </div>
+            </div>
+
+            <!-- Elon Coin Tracker Video -->
+            <div class="video-card">
+                <div class="video-thumb" data-video="/public/Elon Coin Tracker.mp4">
+                    <video muted preload="metadata">
+                        <source src="/public/Elon Coin Tracker.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Elon Coin Tracker</h3>
+                    <p class="video-description">Monitor and analyze price movements of tokens influenced by Elon Musk's social media activity.</p>
+                </div>
+            </div>
+
+            <!-- Medical AI Chatbot Video -->
+            <div class="video-card">
+                <div class="video-thumb" data-video="/public/Medical AI Chatbot.mp4">
+                    <video muted preload="metadata">
+                        <source src="/public/Medical AI Chatbot.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Medical AI Chatbot</h3>
+                    <p class="video-description">AI-powered healthcare solution using blockchain for secure patient data and medical consultations.</p>
+                </div>
+            </div>
+
+            <!-- Market Cap Tracker Video -->
+            <div class="video-card">
+                <div class="video-thumb" data-video="/public/MarketCap Tracker.mp4">
+                    <video muted preload="metadata">
+                        <source src="/public/MarketCap Tracker.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Market Cap Tracker</h3>
+                    <p class="video-description">Real-time monitoring of cryptocurrency market capitalizations with comparative analysis tools.</p>
+                </div>
+            </div>
+
+            <!-- Influencer Following Tracker Video -->
+            <div class="video-card">
+                <div class="video-thumb" data-video="/public/Influencer following tracker with project scoring.mp4">
+                    <video muted preload="metadata">
+                        <source src="/public/Influencer following tracker with project scoring.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Influencer Following Tracker</h3>
+                    <p class="video-description">Track crypto influencers and analyze their impact on project valuations with our scoring system.</p>
+                </div>
+            </div>
+
+            <!-- User Influencer Tracker Video -->
+            <div class="video-card">
+                <div class="video-thumb" data-video="/public/User influencer tracker for new projects.mp4">
+                    <video muted preload="metadata">
+                        <source src="/public/User influencer tracker for new projects.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">User Influencer Tracker</h3>
+                    <p class="video-description">Monitor user-generated content and community influencers supporting emerging crypto projects.</p>
+                </div>
+            </div>
+
+            <!-- Influencer Tweet Tracker Video -->
+            <div class="video-card">
+                <div class="video-thumb" data-video="/public/Influencer Tweet tracker for coins.mp4">
+                    <video muted preload="metadata">
+                        <source src="/public/Influencer Tweet tracker for coins.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Influencer Tweet Tracker</h3>
+                    <p class="video-description">Track Twitter mentions and sentiment analysis for cryptocurrencies from influential accounts.</p>
+                </div>
+            </div>
+
+            <!-- New Coin with Audit Data Video -->
+            <div class="video-card">
+                <div class="video-thumb" data-video="/public/New Coin with Audit Data.mp4">
+                    <video muted preload="metadata">
+                        <source src="/public/New Coin with Audit Data.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">New Coin with Audit Data</h3>
+                    <p class="video-description">Comprehensive security audit reports and analysis for newly launched cryptocurrency tokens.</p>
+                </div>
+            </div>
+
+            <!-- Signals Bot Video -->
+            <div class="video-card">
+                <div class="video-thumb" data-video="/public/Signals Bot.mp4">
+                    <video muted preload="metadata">
+                        <source src="/public/Signals Bot.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Signals Bot</h3>
+                    <p class="video-description">Automated trading signals bot providing market insights and potential entry/exit points for traders.</p>
+                </div>
+            </div>
+
+            <!-- WalletTracker Video -->
+            <div class="video-card">
+                <div class="video-thumb" data-video="/public/WalletTracker.mp4">
+                    <video muted preload="metadata">
+                        <source src="/public/WalletTracker.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Wallet Tracker Pro</h3>
+                    <p class="video-description">Advanced version of our wallet tracking system with enhanced features for professional traders.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Lightbox -->
+    <div class="video-lightbox" id="videoLightbox">
+        <div class="lightbox-content">
+            <span class="close-lightbox">&times;</span>
+            <video controls class="lightbox-video" id="lightboxVideo">
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoThumbs = document.querySelectorAll('.video-thumb');
+            const lightbox = document.getElementById('videoLightbox');
+            const lightboxVideo = document.getElementById('lightboxVideo');
+            const closeButton = document.querySelector('.close-lightbox');
+            
+            // Open lightbox when a video thumbnail is clicked
+            videoThumbs.forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    const videoSrc = this.getAttribute('data-video');
+                    lightboxVideo.querySelector('source').src = videoSrc;
+                    lightboxVideo.load();
+                    lightboxVideo.play();
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Close lightbox when close button is clicked
+            closeButton.addEventListener('click', closeVideoLightbox);
+            
+            // Close lightbox when clicking outside the video
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeVideoLightbox();
+                }
+            });
+            
+            // Close lightbox when ESC key is pressed
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    closeVideoLightbox();
+                }
+            });
+            
+            // Function to close video lightbox
+            function closeVideoLightbox() {
+                lightbox.classList.remove('active');
+                lightboxVideo.pause();
+                document.body.style.overflow = '';
+            }
+            
+            // Mobile Menu Toggle
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const body = document.body;
+            
+            // Toggle mobile menu when hamburger is clicked
+            hamburgerMenu.addEventListener('click', function() {
+                hamburgerMenu.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                body.style.overflow = body.style.overflow === 'hidden' ? '' : 'hidden';
+            });
+        });
+    </script>
+</body>
+
+</html> 

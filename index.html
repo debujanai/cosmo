@@ -99,6 +99,352 @@
         href="/favicon.png"
         rel="apple-touch-icon" /><!-- [Attributes by Finsweet] Number Count -->
     <script defer src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-numbercount@1/numbercount.js"></script>
+    
+    <!-- Navigation Styles -->
+    <style>
+        .nav-links-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: #fff;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+        
+        .nav-link:not(.nav-button):hover {
+            background: rgba(157, 110, 255, 0.1);
+            color: #9d6eff;
+            transform: translateY(-2px);
+        }
+        
+        .nav-link:not(.nav-button)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: #9d6eff;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        
+        .nav-link:not(.nav-button):hover::after {
+            width: 80%;
+            left: 10%;
+        }
+        
+        .nav-button {
+            background: linear-gradient(135deg, #9d6eff 0%, #5c25e7 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(157, 110, 255, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            font-weight: 600;
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(157, 110, 255, 0.5);
+            background: linear-gradient(135deg, #b48fff 0%, #6b34f5 100%);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .nav-links-wrapper {
+                gap: 0.5rem;
+            }
+            
+            .nav-link {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+            
+            .nav-button {
+                padding: 8px 14px;
+            }
+        }
+        
+        /* Contact Form Styles */
+        .contact-form-wrapper {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(20, 20, 30, 0.5);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(157, 110, 255, 0.2);
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        
+        .form-input {
+            background: rgba(30, 30, 45, 0.7);
+            border: 1px solid rgba(157, 110, 255, 0.3);
+            color: white;
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+        
+        .form-input:focus {
+            border-color: #9d6eff;
+            box-shadow: 0 0 0 2px rgba(157, 110, 255, 0.3);
+            outline: none;
+        }
+        
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        label {
+            color: #9d6eff;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .form-button {
+            background: linear-gradient(135deg, #9d6eff 0%, #5c25e7 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(157, 110, 255, 0.3);
+            margin-top: 20px;
+            width: max-content;
+            justify-self: center;
+        }
+        
+        .form-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(157, 110, 255, 0.5);
+            background: linear-gradient(135deg, #b48fff 0%, #6b34f5 100%);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            
+            .contact-form-wrapper {
+                padding: 20px;
+            }
+        }
+        
+        /* Mobile Menu Styles */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 22px;
+            cursor: pointer;
+            z-index: 1000;
+            position: relative;
+        }
+        
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: translateY(9.5px) rotate(45deg);
+            background-color: #9d6eff;
+        }
+        
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: translateY(-9.5px) rotate(-45deg);
+            background-color: #9d6eff;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(15, 15, 25, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            transform: translateY(-10px);
+        }
+        
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .mobile-menu-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .mobile-nav-link {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 600;
+            text-decoration: none;
+            margin: 15px 0;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.4s ease;
+        }
+        
+        .mobile-menu.active .mobile-nav-link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .mobile-menu.active .mobile-nav-link:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu.active .mobile-nav-link:nth-child(2) { transition-delay: 0.2s; }
+        .mobile-menu.active .mobile-nav-link:nth-child(3) { transition-delay: 0.3s; }
+        .mobile-menu.active .mobile-nav-link:nth-child(4) { transition-delay: 0.4s; }
+        .mobile-menu.active .mobile-nav-link:nth-child(5) { transition-delay: 0.5s; }
+        
+        .mobile-nav-link:hover {
+            color: #9d6eff;
+        }
+        
+        .mobile-nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: #9d6eff;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        
+        .mobile-nav-link:hover::after {
+            width: 80%;
+            left: 10%;
+        }
+        
+        .mobile-nav-button {
+            background: linear-gradient(135deg, #9d6eff 0%, #5c25e7 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(157, 110, 255, 0.3);
+            margin-top: 20px;
+        }
+        
+        .mobile-nav-button:hover {
+            background: linear-gradient(135deg, #b48fff 0%, #6b34f5 100%);
+            box-shadow: 0 6px 20px rgba(157, 110, 255, 0.5);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .nav-links-wrapper {
+                display: none;
+            }
+            
+            .hamburger-menu {
+                display: flex;
+            }
+        }
+        
+        /* Mobile transparent navbar */
+        @media screen and (max-width: 767px) {
+            .section.nav {
+                background-color: transparent !important;
+            }
+            
+            .section.nav.show {
+                -webkit-backdrop-filter: none !important;
+                backdrop-filter: none !important;
+                background-color: transparent !important;
+            }
+            
+            /* Add padding to push content down below navbar */
+            .relative-body {
+                padding-top: 80px !important;
+            }
+        }
+        
+        /* Welcome text styling with glassmorphism */
+        .tag.welcome-text {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: white;
+            background: rgba(157, 110, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 12px 25px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .tag.welcome-text:hover {
+            background: rgba(157, 110, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(31, 38, 135, 0.25);
+        }
+    </style>
 </head>
 
 <body>
@@ -117,10 +463,34 @@
             <div data-w-id="2b3b71e3-7617-253c-8a15-bd2b9949cf41" data-animation="default" data-collapse="medium"
                 data-duration="600" data-easing="ease" data-easing2="ease" role="banner" class="section nav w-nav">
                 <div class="container w-container">
-                    <div class="nav-wrapper">
+                    <div class="nav-wrapper" style="display: flex; align-items: center; justify-content: space-between;">
                         <div class="logo-wrapper"><a aria-current="page" class="w-nav-brand w--current"><img
                                     src="/favicon.png"
                                     loading="lazy" alt="CosmoCryptoVentures Logo" class="cosmos-logo" /></a></div>
+                        <!-- Added navigation menu -->
+                        <div class="nav-links-wrapper">
+                            <a href="#services" class="nav-link">Services</a>
+                            <a href="#solutions" class="nav-link">Solutions</a>
+                            <a href="#technology" class="nav-link">Technology</a>
+                            <a href="#about" class="nav-link">About</a>
+                            <a href="#contact" class="nav-link nav-button">Contact Us</a>
+                        </div>
+                        <!-- Mobile hamburger menu -->
+                        <div class="hamburger-menu">
+                            <div class="hamburger-line"></div>
+                            <div class="hamburger-line"></div>
+                            <div class="hamburger-line"></div>
+                        </div>
+                        <!-- Mobile menu overlay -->
+                        <div class="mobile-menu">
+                            <div class="mobile-menu-content">
+                                <a href="#services" class="mobile-nav-link">Services</a>
+                                <a href="#solutions" class="mobile-nav-link">Solutions</a>
+                                <a href="#technology" class="mobile-nav-link">Technology</a>
+                                <a href="#about" class="mobile-nav-link">About</a>
+                                <a href="#contact" class="mobile-nav-link mobile-nav-button">Contact Us</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -129,8 +499,7 @@
             <section data-w-id="a26113f4-2ed2-0c8c-b4f6-53765759f54a" class="section s1">
                 <div class="container w-container">
                     <div class="cosmos-wrapper">
-                        <div class="tag margin-bottom-1p5vw mobile-margin-bottom-5vw">Welcome to
-                            CosmoCryptoVentures</div>
+
                         <h1 class="h1-gradient margin-bottom-1p5vw">Crafting Tomorrow's<br />Technology Today.</h1>
                         <p class="gray-text subhead">CosmoCryptoVentures is a premier blockchain development company
                             specializing in innovative crypto projects designed for a decentralized future.</p>
@@ -245,43 +614,23 @@
                                 <p
                                     class="gray-text margin-bottom-3vw tablet-margin-bottom-6vw mobile-margin-bottom-5vw mobile-width-20em is-slide-in">
                                     At CosmoCryptoVentures, we develop customized blockchain solutions tailored to your
-                                    specific needs. From DeFi platforms to NFT marketplaces, our team delivers <span
+                                    specific needs. From Dapp Development to AI Agents, our team delivers <span
                                         data-w-id="e8aab91f-40cc-b542-e6e3-0d2dca4e9cb9"
-                                        class="clickable-text">cutting-edge crypto projects</span> that stand out in the
+                                        class="clickable-text">advanced crypto projects</span> that stand out in the
                                     competitive digital landscape.</p>
                             </div>
-                            <div class="button-wrapper is-slide-in"><a
-                                    class="button margin-right-2em mobile-margin-bottom-5vw w-inline-block">
-                                    <div class="button-content-wrapper">
-                                        <div class="padding-right-08em">Our Services</div>
-                                        <div class="arrow"></div>
-                                    </div>
-                                    <div class="w-embed">
-                                        <style>
-                                            @media only screen and (min-width: 992px) {
-                                                .button:hover>.button-content-wrapper>.arrow {
-                                                    transform: translate(0.4vw);
-                                                }
-                                            }
-                                        </style>
-                                    </div>
-                                </a><a
-                                    class="button button-secondary mobile-margin-bottom-5vw w-inline-block">
-                                    <div class="button-content-wrapper">
-                                        <div class="arrow"></div>
-                                    </div>
-                                </a></div>
+
                         </div>
                         <div class="statistic-wrapper relative is-slide-in">
                             <div class="margin-bottom-5vw tablet-margin-right-5vw mobile-margin-right-8vw">
                                 <h2 class="h2-big tablet-margin-bottom-1p5vw"><strong fs-numbercount-threshold="5"
-                                        fs-numbercount-element="number" fs-numbercount-duration="1500">75</strong><span
+                                        fs-numbercount-element="number" fs-numbercount-duration="1500">30</strong><span
                                         class="text-span-2"><strong class="text-span-plus">+</strong></span></h2>
                                 <div class="gray-text text-small">Projects completed successfully<br /></div>
                             </div>
                             <div class="margin-bottom-5vw tablet-margin-right-5vw mobile-margin-right-8vw">
                                 <h2 class="h2-big tablet-margin-bottom-1p5vw"><strong fs-numbercount-threshold="5"
-                                        fs-numbercount-element="number" fs-numbercount-duration="1500">52</strong><span
+                                        fs-numbercount-element="number" fs-numbercount-duration="1500">25</strong><span
                                         class="text-span-2"><strong class="text-span-plus">M+</strong></span></h2>
                                 <div class="gray-text text-small">Total crypto assets secured<br /></div>
                             </div>
@@ -295,7 +644,7 @@
                     </div>
                 </div>
             </section>
-            <section data-w-id="0cb95027-cc7f-ad63-7b99-01b1d4647590" class="section s4"><img
+            <section data-w-id="0cb95027-cc7f-ad63-7b99-01b1d4647590"  id="services"  class="section s4"><img
                     src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdb5_Coin_color.svg"
                     loading="lazy" data-w-id="d40f2368-30ff-5fe4-1e83-72773967ea2c" alt="" class="coin5_bg" /><img
                     src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdb5_Coin_color.svg"
@@ -340,10 +689,10 @@
                                         </div>
                                         <h3
                                             class="margin-bottom-3vw tablet-margin-bottom-1p5vw mobile-margin-bottom-3vw">
-                                            DeFi Solutions</h3>
-                                        <p class="text-small max-width-16em gray-text">Our team develops cutting-edge
-                                            decentralized exchanges and financial platforms with minimal fees,
-                                            lightning-fast transactions, and seamless cross-chain compatibility.</p>
+                                            DApp Development</h3>
+                                        <p class="text-small max-width-16em gray-text">Our team builds feature-rich
+                                            decentralized applications with intuitive interfaces, scalable architecture,
+                                            and seamless blockchain integration for web3 business solutions.</p>
                                     </div>
                                     <div class="is-slide-in">
                                         <div>
@@ -357,11 +706,11 @@
                                             </div>
                                             <h3
                                                 class="margin-bottom-3vw tablet-margin-bottom-1p5vw mobile-margin-bottom-3vw">
-                                                Security Services<br /></h3>
+                                                AI Crypto Agents<br /></h3>
                                         </div>
-                                        <p class="text-small max-width-16em gray-text">Our advanced security protocols
-                                            protect digital assets across multiple blockchains, delivering enhanced
-                                            protection and generating additional rewards for our clients.</p>
+                                        <p class="text-small max-width-16em gray-text">Our advanced AI agents automate
+                                            trading strategies, monitor market conditions, and provide predictive analytics
+                                            while securing digital assets with advanced protection mechanisms.</p>
                                     </div>
                                     <div class="is-slide-in">
                                         <div
@@ -373,11 +722,10 @@
                                         </div>
                                         <h3
                                             class="margin-bottom-3vw tablet-margin-bottom-1p5vw mobile-margin-bottom-3vw">
-                                            Cross-Chain Integration</h3>
-                                        <p class="text-small max-width-16em gray-text">We specialize in connecting
-                                            different blockchain networks through custom bridges and interoperability
-                                            solutions, enabling seamless asset transfers between Ethereum, Bitcoin, and
-                                            other major chains.</p>
+                                            Telegram Bot Solutions</h3>
+                                        <p class="text-small max-width-16em gray-text">We develop customized Telegram bots
+                                            for crypto communities, enabling automated trading alerts, portfolio tracking,
+                                            and seamless transactions between multiple blockchains with user-friendly commands.</p>
                                     </div>
                                     <div class="is-slide-in">
                                         <div
@@ -387,16 +735,37 @@
                                         </div>
                                         <h3
                                             class="margin-bottom-3vw tablet-margin-bottom-1p5vw mobile-margin-bottom-3vw">
-                                            Asset Management</h3>
-                                        <p class="text-small max-width-16em gray-text">Our secure infrastructure
-                                            provides the ideal environment for managing digital assets across multiple
-                                            blockchains with enterprise-grade security and intuitive portfolio
-                                            management tools.</p>
+                                            Blockchain Analytics</h3>
+                                        <p class="text-small max-width-16em gray-text">Our comprehensive analytics platform
+                                            provides real-time insights into market trends, transaction patterns, and network
+                                            activity with customizable dashboards and strategic intelligence for informed decisions.</p>
                                     </div>
                                     </div>
                             </div>
                         </div>
+                        <div class="button-wrapper is-slide-in"><a href="/demo.html"
+                            class="button margin-right-2em mobile-margin-bottom-5vw w-inline-block">
+                            <div class="button-content-wrapper">
+                                <div class="padding-right-08em">View Demo of our Services</div>
+                                <div class="arrow"></div>
+                            </div>
+                            <div class="w-embed">
+                                <style>
+                                    @media only screen and (min-width: 992px) {
+                                        .button:hover>.button-content-wrapper>.arrow {
+                                            transform: translate(0.4vw);
+                                        }
+                                    }
+                                </style>
+                            </div>
+                        </a><a
+                            class="button button-secondary mobile-margin-bottom-5vw w-inline-block">
+                            <div class="button-content-wrapper">
+                                <div class="arrow"></div>
+                            </div>
+                        </a></div>
                     </div>
+                    
                 </div>
             </section>
             <section data-w-id="62eb8c99-7cee-8f5b-730c-9c0189ae1ec5" class="section s5"><img
@@ -433,377 +802,7 @@
                     src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdbd_background-planet.svg"
                     loading="lazy" alt="Black planet" class="bg-black-planet" />
             </section>
-            <section class="section s5">
-                <div class="container w-container">
-                    <div class="technology-wrapper left-align padding-all-0">
-                        <div
-                            class="open-economy-wrapper margin-bottom-5vw margin-left-7vw tablet-margin-bottom-8vw is-slide-in">
-                            <h2
-                                class="margin-bottom-3vw max-width-11em tablet-margin-bottom-6vw mobile-margin-bottom-8vw">
-                                Unlock the full potential of blockchain technology.</h2><a
-                                class="button button-secondary button-hover w-inline-block">
-                                <div class="button-wrapper">
-                                    <div class="flex-horizontal">
-                                        <div class="padding-right-08em">Our Solutions</div>
-                                        <div class="arrow"></div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="coming_soon_wrapper">
-                        <div id="w-node-_9cb7d692-e53c-b863-ad5f-d1da8c4ca78f-b019fd69"
-                            class="card-background-black relative is-slide-in">
-                            <div class="swap-tokens-wrapper">
-                                <div class="tag card margin-bottom-28vw">Unified Account Management</div>
-                                <div><img
-                                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdbb_Crystal.svg"
-                                        loading="lazy" alt="Crystal" class="absolute i-crystal" /><img
-                                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdbe_swoosh2.svg"
-                                        loading="lazy" alt="" class="absolute i-swoosh" /></div>
-                                <h3 class="h3-big margin-bottom-10vw tablet-max-width-12em tablet-margin-bottom-6vw">
-                                    Advanced security for all your crypto assets.<br /></h3>
-                                
-                            </div>
-                        </div>
-                        <div id="w-node-c427a734-bd84-8f7e-ac63-8e5f5bc341c7-b019fd69"
-                            class="card-background-black open-economy-flex relative is-slide-in">
-                            <div class="swap-tokens-wrapper max-width-30em">
-                                <div
-                                    class="tag card margin-bottom-1p5vw tablet-margin-bottom-6vw mobile-margin-bottom-60vw">
-                                    Custom Blockchain Platform</div>
-                                <h3
-                                    class="h3-mid margin-bottom-3vw tablet-margin-bottom-6vw mobile-margin-bottom-8vw mobile-max-width-10em">
-                                    Build your own digital ecosystem.<br /></h3>
-                                
-                            </div>
-                            <div><img
-                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fda7_Coin_Black.svg"
-                                    loading="lazy" alt="" class="absolute i-black-coin-economy1" /><img
-                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fda7_Coin_Black.svg"
-                                    loading="lazy" alt="" class="absolute i-black-coin-economy2" /><img
-                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fda7_Coin_Black.svg"
-                                    loading="lazy" alt="" class="absolute i-black-coin-economy3" /><img
-                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fda7_Coin_Black.svg"
-                                    loading="lazy" alt="" class="absolute i-black-coin-economy5" /><img
-                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fda7_Coin_Black.svg"
-                                    loading="lazy" alt="" class="absolute i-black-coin-economy4" /><img
-                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdb5_Coin_color.svg"
-                                    loading="lazy" alt="" class="absolute i-color-coin-economy" /></div>
-                        </div>
-                        <div id="w-node-_2c152a1d-47af-4e3a-9503-0fa21033e0f3-b019fd69"
-                            class="card-background-black is-slide-in">
-                            <div class="swap-tokens-wrapper">
-                                <div
-                                    class="tag card margin-bottom-1p5vw tablet-margin-bottom-6vw mobile-margin-bottom-8vw">
-                                    Smart Contract Toolkit</div>
-                                <h3 class="h3-mid margin-bottom-3vw tablet-margin-bottom-6vw mobile-margin-bottom-8vw">
-                                    <strong>Develop with ease.</strong><br /><strong>Deploy with confidence.</strong><br />
-                                </h3>
-                                
-                            </div>
-                        </div>
-                        <div id="w-node-_7f73da01-267e-39b0-ccac-bbd533dfac9f-b019fd69"
-                            class="card-background-black enter-wrapper relative overflow-visible mobile-height-95vw enter-card-hover is-slide-in">
-                            <div class="tag card margin-bottom-28vw mobile-margin-bottom-50vw">Cross-Chain Bridge</div>
-                                <h3 class="h3-mid margin-bottom-3vw tablet-margin-bottom-6vw mobile-margin-bottom-8vw">
-                                <strong>+ Ethereum.</strong><br /><strong>+ Bitcoin.</strong><br /><strong>+ All major
-                                    chains.</strong>
-                                </h3>
-                            
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section data-w-id="2ec5bf00-24c4-d106-d556-c5170adcfb43" class="section s6">
-                <div class="bg-s6-wrapper">
-                    <div class="absolute text-icon-s7">
-                        <div class="black-text t1 margin-bottom-8vw">CosmoCrypto Framework</div>
-                        <div class="black-text margin-bottom-5vw padding-left-4vw">Blockchain Solutions</div>
-                        <div class="black-text t3">Innovative Tools</div>
-                    </div><img
-                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fde6_background%202%203rd%20block.jpg"
-                        loading="lazy" alt="Purple star" class="star-s6" /><img
-                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdc0_orbit-icon.svg"
-                        loading="lazy" alt="Orbit&#x27;s force field" class="icon-s6" />
-                </div>
-                <div class="container w-container">
-                    <div class="technology-wrapper margin-left-7vw">
-                        <div class="open-economy-wrapper relative mobile-margin-bottom-5vw is-slide-in">
-                            <div class="tag margin-bottom-3vw mobile-margin-bottom-5vw">TECHNOLOGY</div>
-                            <h2 class="gradient max-width-9em tablet-margin-bottom-1p5vw mobile-margin-bottom-8vw">
-                                <strong>Powering the next generation of crypto projects.</strong>
-                            </h2><img
-                                src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdbc_cross_icon.svg"
-                                loading="lazy" alt="" class="cross2" />
-                        </div>
-                    </div>
-                    <div class="cosmos-sdk-wrapper relative">
-                        <div class="corner-top-left"></div>
-                        <div id="w-node-_8b02db99-d7bf-da8b-91f1-d08c8af08b56-b019fd69"
-                            class="cosmos-txt-wrapper tablet-max-width-56em is-slide-in">
-                            <p class="margin-bottom-1p5vw gray-text mobile-margin-bottom-3vw"><a
-                                    target="_blank"><strong>CosmoCrypto
-                                        Framework</strong></a> is our proprietary blockchain development platform that
-                                enables rapid creation of secure and high-performance cryptocurrency projects and DeFi
-                                applications.</p>
-                            <p class="gray-text">Our elite development team specializes in creating custom tokens, DeFi
-                                protocols, and NFT marketplaces that deliver exceptional investment opportunities and
-                                user experiences.</p>
-                        </div>
-                        <div id="w-node-ebb1cc15-8a62-c793-df88-cebeff5f9dcb-b019fd69"
-                            class="flex-vertical is-slide-in">
-                            <div class="tag margin-bottom-1p5vw mobile-margin-bottom-5vw">Advanced Security</div>
-                            <div
-                                class="carbon-footprint-wrapper margin-bottom-08vw tablet-margin-bottom-1p5vw mobile-margin-bottom-5vw">
-                                <img src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdc1_leaf.svg"
-                                    loading="lazy" alt="eco-friendly icon" class="leaf" />
-                                <h2 class="h2-big margin-right-1vw"><span fs-numbercount-threshold="5"
-                                        fs-numbercount-element="number-3" fs-numbercount-duration="1500">100</span>%
-                                </h2>
-                                <h3 class="max-width-5em">audit success rate</h3>
-                            </div>
-                            <div class="text-small gray-text">Industry-leading protection against smart contract
-                                vulnerabilities.</div>
-                        </div>
-                        <div id="w-node-_4ba30648-d4ad-52f0-4b95-8b8943c210ac-b019fd69"
-                            class="flex-vertical is-slide-in">
-                            <div class="tag margin-bottom-1p5vw mobile-margin-bottom-5vw">Market Traction</div>
-                            <h2 class="h2-big margin-bottom-08vw tablet-margin-bottom-1p5vw mobile-margin-bottom-5vw">
-                                <span class="counter">30</span>+
-                            </h2>
-                            <div class="text-small gray-text">Successfully launched crypto projects with active
-                                communities.</div>
-                        </div>
-                        <div id="w-node-eb67d344-82d8-8892-241e-b1d4d6b2c738-b019fd69"
-                            class="flex-vertical is-slide-in">
-                            <div class="tag margin-bottom-1p5vw mobile-margin-bottom-5vw">Token Development</div>
-                            <h2 class="h2-big margin-bottom-08vw tablet-margin-bottom-1p5vw mobile-margin-bottom-5vw">
-                                <span fs-numbercount-threshold="5" fs-numbercount-element="number-4"
-                                    fs-numbercount-duration="1500">7</span> days
-                            </h2>
-                            <div class="text-small gray-text">From concept to launch with our rapid token creation
-                                service.</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="section s7">
-                <div class="bg-7-wrapper"><img
-                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fd9e_orbit%20block%201.svg"
-                        loading="lazy" alt="planetary orbit" class="orbit-s7" /><img
-                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdc5_planets_s7.svg"
-                        loading="lazy" alt="Planets" class="absolute planets-s7" /><img
-                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fde7_image%201.jpg"
-                        loading="lazy" alt="Orange star" class="absolute star-7" /></div>
-                <div class="container w-container">
-                    <div class="header-wrapper-developers">
-                        <div class="developers-wrapper relative is-slide-in">
-                            <div class="tag rotate-90 absolute tag-abs1">Solutions<br /></div>
-                            <h2
-                                class="margin-bottom-1p5vw max-width-30em margin-top-6vw tablet-margin-bottom-3vw mobile-margin-bottom-5vw">
-                                Your vision, our expertise.<br /></h2>
-                            <p class="gray-text max-width-30em tablet-max-width-25em mobile-margin-bottom-8vw">
-                                CosmoCryptoVentures delivers custom blockchain solutions for innovators and
-                                entrepreneurs. Partner with our experienced team to transform your ideas into
-                                market-ready crypto products.</p>
-                        </div>
-                    </div>
-                    <div class="interchain-wrapper">
-                        <div class="s7-content-wrapper">
-                            <div class="max-width-25em dev-content-wrapper tablet-max-width-40em is-slide-in"><img
-                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fd9f_Plus.svg"
-                                    loading="lazy" alt="" class="margin-bottom-1p5vw tablet-margin-bottom-3vw" />
-                                <h3 class="margin-bottom-1p5vw tablet-margin-bottom-3vw">DeFi & Trading Platforms</h3>
-                                <p class="text-small gray-text">Custom decentralized exchanges, lending protocols, and
-                                    yield farming platforms with advanced security features and intuitive user
-                                    interfaces.</p>
-                            </div>
-                            <div class="max-width-25em dev-content-wrapper tablet-max-width-40em is-slide-in"><img
-                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fd9f_Plus.svg"
-                                    loading="lazy" alt="" class="margin-bottom-1p5vw tablet-margin-bottom-3vw" />
-                                <h3 class="margin-bottom-1p5vw tablet-margin-bottom-3vw">DAO & Governance Systems</h3>
-                                <p class="text-small gray-text">Secure voting mechanisms, treasury management tools, and
-                                    community governance frameworks that enable fair and transparent decision-making.
-                                </p>
-                            </div>
-                            <div class="max-width-25em dev-content-wrapper tablet-max-width-40em is-slide-in"><img
-                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fd9f_Plus.svg"
-                                    loading="lazy" alt="" class="margin-bottom-1p5vw tablet-margin-bottom-3vw" />
-                                <h3 class="margin-bottom-1p5vw tablet-margin-bottom-3vw">NFT & Gaming Infrastructure
-                                </h3>
-                                <p class="text-small gray-text">Comprehensive NFT marketplaces, gaming platforms, and
-                                    cross-game asset systems that create new revenue streams and enhance player
-                                    engagement.</p>
-                            </div><a id="w-node-_9c314dbb-ae86-e0e5-54e0-1be122554f9c-b019fd69"
-                                class="card-background-black relative card-flex fundraising-gradient card-build-hover is-slide-in w-inline-block">
-                                <div class="tag card margin-bottom-28vw mobile-margin-bottom-50vw">Consultation</div>
-                                <img src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdb5_Coin_color.svg"
-                                    loading="lazy" alt="" class="absolute i-coin-fundraising2" /><img
-                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdb5_Coin_color.svg"
-                                    loading="lazy" alt="" class="absolute i-coin-fundraising1" />
-                                 <h3 class="h3-mid margin-bottom-3vw mobile-margin-bottom-5vw">Transform your ideas</h3>
-                                <div class="w-embed">
-                                    <style>
-                                        @media only screen and (min-width: 992px) {
-                                            .card-background-black:hover .i-coin-fundraising1 {
-                                                transform: scale(0.9);
-                                            }
-
-                                            .card-background-black:hover .i-coin-fundraising2 {
-                                                transform: scale(0.9) rotate(35deg);
-                                            }
-                                        }
-                                    </style>
-                                </div>
-                            </a><a id="w-node-d0feb6ce-b275-abf8-1d16-3c6809df826d-b019fd69"
-                                target="_blank"
-                                class="card-background-black relative card-flex starport-gradient card-build-hover is-slide-in w-inline-block">
-                                <div class="tag card margin-bottom-28vw mobile-margin-bottom-50vw">Rapid Development
-                                </div><img
-                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdc2_icon_planet_forceforcefield.svg"
-                                    loading="lazy" alt="Planet with a force field" class="absolute i-force-field" />
-                                <h3
-                                    class="h3-mid max-width-8em margin-bottom-3vw tablet-margin-bottom-6vw mobile-margin-bottom-5vw">
-                                    Launch your token in days.</h3>
-                                <div class="w-embed">
-                                    <style>
-                                        @media only screen and (min-width: 992px) {
-                                            .card-background-black:hover .absolute.i-force-field {
-                                                transform: scale(0.8) rotate(-20deg);
-                                            }
-                                        }
-                                    </style>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="section s-network">
-                <div class="bg-8-wrapper overflow-visible"><img
-                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fde8_image%202.jpg"
-                        loading="lazy" alt="green star" class="star-s8" /><img
-                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fd9e_orbit%20block%201.svg"
-                        loading="lazy" alt="planetary orbit" class="orbit-s8" /><img
-                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdcb_planets-s8.svg"
-                        loading="lazy" alt="planetary system" class="planets-s8" /></div>
-                <div class="container w-container">
-                    <div class="technology-wrapper">
-                        <div class="s7-wrapper is-slide-in">
-                            <div class="s3-header-wrapper margin-bottom-5vw">
-                                <h2 class="tablet-margin-bottom-3vw">Explore our services.<br /></h2>
-                            </div>
-                        </div>
-                        <div class="join-wrapper"><a target="_blank"
-                                class="card-background-black flex-vertical card-hover is-slide-in w-inline-block">
-                                <div class="tag card margin-bottom-3vw mobile-margin-bottom-5vw">Development</div>
-                                <h3 class="margin-bottom-1p5vw tablet-margin-bottom-3vw mobile-margin-bottom-8vw">
-                                    Custom Crypto Projects </h3>
-                                <p class="text-small margin-bottom-5vw">End-to-end development of tokens, DeFi
-                                    platforms, and NFT marketplaces tailored to your specific business requirements.</p>
-                                <img src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdc7_connect.svg"
-                                    loading="lazy" alt="connect icon" class="network-icon" />
-                            </a><a target="_blank"
-                                class="card-background-black flex-vertical card-hover is-slide-in w-inline-block">
-                                <div class="tag card margin-bottom-3vw mobile-margin-bottom-5vw">Strategy</div>
-                                <h3 class="margin-bottom-1p5vw tablet-margin-bottom-3vw mobile-margin-bottom-8vw">
-                                    Tokenomics & Planning </h3>
-                                <p class="text-small margin-bottom-5vw">Strategic design of token economics,
-                                    distribution models, and governance systems that drive sustainable project growth.
-                                </p><img
-                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdc8_services.svg"
-                                    loading="lazy" alt="services icon" />
-                            </a><a 
-                                class="card-background-black flex-vertical card-hover is-slide-in w-inline-block">
-                                <div class="tag card margin-bottom-3vw mobile-margin-bottom-5vw">Security</div>
-                                <h3 class="margin-bottom-1p5vw tablet-margin-bottom-3vw mobile-margin-bottom-8vw">Smart
-                                    Contract Audits </h3>
-                                <p class="text-small margin-bottom-5vw">Comprehensive security reviews to identify
-                                    vulnerabilities and ensure your crypto project meets industry-standard security
-                                    protocols.</p><img
-                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdc9_validator.svg"
-                                    loading="lazy" alt="validator icon" />
-                            </a></div>
-                    </div>
-                </div>
-            </section>
-            <section class="section s-worldwide">
-                <div class="container w-container">
-                    <div class="worldwide-community-wrapper relative">
-                        <div class="community-wrapper">
-                            <div class="meet-community-wrapper max-width-30em tablet-margin-bottom-8vw is-slide-in">
-                                <h2 class="margin-bottom-5vw mobile-margin-bottom-5vw mobile-margin-bottom-8vw">Work
-                                    with industry specialists.<br /></h2>
-                                <p class="gray-text margin-bottom-3vw mobile-margin-bottom-8vw">Our team of blockchain
-                                    developers, designers, and strategists has successfully delivered over 75 crypto
-                                    projects across various sectors and blockchain ecosystems.</p><a
-                                    class="button button-secondary mobile-margin-bottom-8vw w-inline-block">
-                                    <div class="button-content-wrapper">
-                                        <div class="padding-right-p4em">Request Proposal</div>
-                                        <div class="arrow"></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="community-grid"><a id="w-node-efc5a0a4-7992-8a24-3bb5-f1c884a04694-b019fd69"
-                                    target="_blank"
-                                    class="flex-horizontal align-top community-hover is-slide-in w-inline-block"><img
-                                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdcc_Telegram.svg"
-                                        loading="lazy" alt="telegram icon" class="community-icon margin-right-3vw" />
-                                    <div class="flex-vertical">
-                                        <div>
-                                            <div
-                                                class="button-secondary button-text-small margin-bottom-1vw mobile-margin-bottom-3vw">
-                                                Project Discovery Session </div>
-                                        </div>
-                                        <p class="dark-gray-text max-width-25em">Kickstart your crypto journey with a
-                                            comprehensive planning workshop to define objectives and technical
-                                            requirements.</p>
-                                    </div>
-                                </a><a
-                                    class="flex-horizontal align-top community-hover is-slide-in w-inline-block"><img
-                                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdcd_Twitter.svg"
-                                        loading="lazy" alt="twitter icon" class="community-icon margin-right-3vw" />
-                                    <div class="flex-vertical">
-                                        <div
-                                            class="button-secondary button-text-small margin-bottom-1vw mobile-margin-bottom-3vw">
-                                            Market Entry Strategy </div>
-                                        <p class="dark-gray-text max-width-25em">Get expert guidance on positioning your
-                                            project in the competitive crypto landscape with tailored marketing and
-                                            launch strategies.</p>
-                                    </div>
-                                </a><a target="_blank"
-                                    class="flex-horizontal align-top community-hover is-slide-in w-inline-block"><img
-                                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdce_Discord.svg"
-                                        loading="lazy" alt="discord icon" class="community-icon margin-right-3vw" />
-                                    <div class="flex-vertical">
-                                        <div
-                                            class="button-secondary button-text-small margin-bottom-1vw mobile-margin-bottom-3vw">
-                                            Development Roadmap </div>
-                                        <p class="dark-gray-text max-width-25em">Receive a detailed implementation plan
-                                            with milestones, technical specifications, and resource allocation for your
-                                            crypto project.</p>
-                                    </div>
-                                </a><a target="_blank"
-                                    class="flex-horizontal align-top community-hover is-slide-in w-inline-block"><img
-                                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdcf_Cosmos.svg"
-                                        loading="lazy" alt="Cosmos icon" class="community-icon margin-right-3vw" />
-                                    <div class="flex-vertical">
-                                        <div
-                                            class="button-secondary button-text-small margin-bottom-1vw mobile-margin-bottom-3vw">
-                                            Post-Launch Support </div>
-                                        <p class="dark-gray-text max-width-25em">Ongoing technical assistance, updates,
-                                            and optimization services to ensure your project's long-term success in the
-                                            market.</p>
-                                    </div>
-                                </a></div>
-                        </div>
-                        <div class="corner-bottom-left"></div>
-                        <div class="padding-right-p4em"></div>
-                    </div>
-                </div>
-            </section>
-            <section class="section s-enter relative">
+                        <section  id="solutions" class="section s-enter relative">
                 <div class="bg-wrapper9"><img
                         src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fde9_image%203.jpg"
                         loading="lazy" alt="" class="absolute background-planet" /></div>
@@ -819,8 +818,8 @@
                                     <div class="tag card margin-bottom-1p5vw tablet-margin-bottom-3vw">Develop</div>
                                     <h3
                                         class="max-width-9em margin-bottom-08vw tablet-margin-bottom-1p5vw mobile-margin-bottom-3vw">
-                                        Smart Token Engineering </h3>
-                                    <p class="text-small">Expert creation of utility, governance, and security tokens with custom features, anti-bot measures, and automated distribution mechanisms.<br /></p>
+                                        AI-Driven Blockchain Solutions  </h3>
+                                    <p class="text-small">Innovative development of AI-powered applications for blockchain, enhancing security, efficiency, and user engagement.<br /></p>
                                 </div><img
                                     src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdec_Planet-big.svg"
                                     loading="lazy" alt="Big planet" class="absolute welcome-img _2" /><img
@@ -911,6 +910,380 @@
                     </div>
                 </div>
             </section>
+            <section class="section s5">
+                <div class="container w-container">
+                    <div class="technology-wrapper left-align padding-all-0">
+                        <div
+                            class="open-economy-wrapper margin-bottom-5vw margin-left-7vw tablet-margin-bottom-8vw is-slide-in">
+                            <h2
+                                class="margin-bottom-3vw max-width-11em tablet-margin-bottom-6vw mobile-margin-bottom-8vw">
+                                Unlock the full potential of blockchain technology.</h2><a
+                                class="button button-secondary button-hover w-inline-block">
+                                <div class="button-wrapper">
+                                    <div class="flex-horizontal">
+                                        <div class="padding-right-08em">Our Solutions</div>
+                                        <div class="arrow"></div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="coming_soon_wrapper">
+                        <div id="w-node-_9cb7d692-e53c-b863-ad5f-d1da8c4ca78f-b019fd69"
+                            class="card-background-black relative is-slide-in">
+                            <div class="swap-tokens-wrapper">
+                                <div class="tag card margin-bottom-28vw">Unified Account Management</div>
+                                <div><img
+                                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdbb_Crystal.svg"
+                                        loading="lazy" alt="Crystal" class="absolute i-crystal" /><img
+                                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdbe_swoosh2.svg"
+                                        loading="lazy" alt="" class="absolute i-swoosh" /></div>
+                                <h3 class="h3-big margin-bottom-10vw tablet-max-width-12em tablet-margin-bottom-6vw">
+                                    Advanced security for all your crypto assets.<br /></h3>
+                                
+                            </div>
+                        </div>
+                        <div id="w-node-c427a734-bd84-8f7e-ac63-8e5f5bc341c7-b019fd69"
+                            class="card-background-black open-economy-flex relative is-slide-in">
+                            <div class="swap-tokens-wrapper max-width-30em">
+                                <div
+                                    class="tag card margin-bottom-1p5vw tablet-margin-bottom-6vw mobile-margin-bottom-60vw">
+                                    Custom Blockchain Platform</div>
+                                <h3
+                                    class="h3-mid margin-bottom-3vw tablet-margin-bottom-6vw mobile-margin-bottom-8vw mobile-max-width-10em">
+                                    Build your own digital ecosystem.<br /></h3>
+                                
+                            </div>
+                            <div><img
+                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fda7_Coin_Black.svg"
+                                    loading="lazy" alt="" class="absolute i-black-coin-economy1" /><img
+                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fda7_Coin_Black.svg"
+                                    loading="lazy" alt="" class="absolute i-black-coin-economy2" /><img
+                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fda7_Coin_Black.svg"
+                                    loading="lazy" alt="" class="absolute i-black-coin-economy3" /><img
+                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fda7_Coin_Black.svg"
+                                    loading="lazy" alt="" class="absolute i-black-coin-economy5" /><img
+                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fda7_Coin_Black.svg"
+                                    loading="lazy" alt="" class="absolute i-black-coin-economy4" /><img
+                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdb5_Coin_color.svg"
+                                    loading="lazy" alt="" class="absolute i-color-coin-economy" /></div>
+                        </div>
+                        <div id="w-node-_2c152a1d-47af-4e3a-9503-0fa21033e0f3-b019fd69"
+                            class="card-background-black is-slide-in">
+                            <div class="swap-tokens-wrapper">
+                                <div
+                                    class="tag card margin-bottom-1p5vw tablet-margin-bottom-6vw mobile-margin-bottom-8vw">
+                                    Smart Contract Toolkit</div>
+                                <h3 class="h3-mid margin-bottom-3vw tablet-margin-bottom-6vw mobile-margin-bottom-8vw">
+                                    <strong>Develop with ease.</strong><br /><strong>Deploy with confidence.</strong><br />
+                                </h3>
+                                
+                            </div>
+                        </div>
+                        <div id="w-node-_7f73da01-267e-39b0-ccac-bbd533dfac9f-b019fd69"
+                            class="card-background-black enter-wrapper relative overflow-visible mobile-height-95vw enter-card-hover is-slide-in">
+                            <div class="tag card margin-bottom-28vw mobile-margin-bottom-50vw">Cross-Chain Bridge</div>
+                                <h3 class="h3-mid margin-bottom-3vw tablet-margin-bottom-6vw mobile-margin-bottom-8vw">
+                                <strong> Ethereum.</strong><br />
+                                </h3>
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section data-w-id="2ec5bf00-24c4-d106-d556-c5170adcfb43"class="section s6">
+                <div class="bg-s6-wrapper">
+                    <div class="absolute text-icon-s7">
+                        <div class="black-text t1 margin-bottom-8vw">CosmoCrypto Framework</div>
+                        <div class="black-text margin-bottom-5vw padding-left-4vw">Blockchain Solutions</div>
+                        <div class="black-text t3">Innovative Tools</div>
+                    </div><img
+                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fde6_background%202%203rd%20block.jpg"
+                        loading="lazy" alt="Purple star" class="star-s6" /><img
+                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdc0_orbit-icon.svg"
+                        loading="lazy" alt="Orbit&#x27;s force field" class="icon-s6" />
+                </div>
+                <div  id="technology"  class="container w-container">
+                    <div class="technology-wrapper margin-left-7vw">
+                        <div  class="open-economy-wrapper relative mobile-margin-bottom-5vw is-slide-in">
+                            <div class="tag margin-bottom-3vw mobile-margin-bottom-5vw">TECHNOLOGY</div>
+                            <h2 class="gradient max-width-9em tablet-margin-bottom-1p5vw mobile-margin-bottom-8vw">
+                                <strong>Powering the next generation of crypto projects.</strong>
+                            </h2><img
+                                src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdbc_cross_icon.svg"
+                                loading="lazy" alt="" class="cross2" />
+                        </div>
+                    </div>
+                    <div class="cosmos-sdk-wrapper relative">
+                        <div class="corner-top-left"></div>
+                        <div id="w-node-_8b02db99-d7bf-da8b-91f1-d08c8af08b56-b019fd69"
+                            class="cosmos-txt-wrapper tablet-max-width-56em is-slide-in">
+                            <p class="margin-bottom-1p5vw gray-text mobile-margin-bottom-3vw"><a
+                                    target="_blank"><strong>CosmoCrypto
+                                        Framework</strong></a> is our proprietary blockchain development platform that
+                                enables rapid creation of secure and high-performance cryptocurrency projects and DeFi
+                                applications.</p>
+                            <p class="gray-text">Our expert development team specializes in building AI-driven DApps and intelligent agents that enhance user engagement and streamline operations across various blockchain platforms.</p>
+                        </div>
+                        <div id="w-node-ebb1cc15-8a62-c793-df88-cebeff5f9dcb-b019fd69"
+                            class="flex-vertical is-slide-in">
+                            <div class="tag margin-bottom-1p5vw mobile-margin-bottom-5vw">Advanced Security</div>
+                            <div
+                                class="carbon-footprint-wrapper margin-bottom-08vw tablet-margin-bottom-1p5vw mobile-margin-bottom-5vw">
+                                <img src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdc1_leaf.svg"
+                                    loading="lazy" alt="eco-friendly icon" class="leaf" />
+                                <h2 class="h2-big margin-right-1vw"><span fs-numbercount-threshold="5"
+                                        fs-numbercount-element="number-3" fs-numbercount-duration="1500">100</span>%
+                                </h2>
+                                <h3 class="max-width-5em">audit success rate</h3>
+                            </div>
+                            <div class="text-small gray-text">Industry-leading protection against smart contract
+                                vulnerabilities.</div>
+                        </div>
+                        <div id="w-node-_4ba30648-d4ad-52f0-4b95-8b8943c210ac-b019fd69"
+                            class="flex-vertical is-slide-in">
+                            <div class="tag margin-bottom-1p5vw mobile-margin-bottom-5vw">Market Traction</div>
+                            <h2 class="h2-big margin-bottom-08vw tablet-margin-bottom-1p5vw mobile-margin-bottom-5vw">
+                                <span class="counter">30</span>+
+                            </h2>
+                            <div class="text-small gray-text">Successfully launched crypto projects with active
+                                communities.</div>
+                        </div>
+                        <div id="w-node-eb67d344-82d8-8892-241e-b1d4d6b2c738-b019fd69"
+                            class="flex-vertical is-slide-in">
+                            <div class="tag margin-bottom-1p5vw mobile-margin-bottom-5vw">Token Development</div>
+                            <h2 class="h2-big margin-bottom-08vw tablet-margin-bottom-1p5vw mobile-margin-bottom-5vw">
+                                <span fs-numbercount-threshold="5" fs-numbercount-element="number-4"
+                                    fs-numbercount-duration="1500">7</span> days
+                            </h2>
+                            <div class="text-small gray-text">From concept to launch with our rapid token creation
+                                service.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section s7">
+                <div class="bg-7-wrapper"><img
+                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fd9e_orbit%20block%201.svg"
+                        loading="lazy" alt="planetary orbit" class="orbit-s7" /><img
+                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdc5_planets_s7.svg"
+                        loading="lazy" alt="Planets" class="absolute planets-s7" /><img
+                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fde7_image%201.jpg"
+                        loading="lazy" alt="Orange star" class="absolute star-7" /></div>
+                <div class="container w-container">
+                    <div class="header-wrapper-developers">
+                        <div class="developers-wrapper relative is-slide-in">
+                            <div class="tag rotate-90 absolute tag-abs1">Solutions<br /></div>
+                            <h2
+                                class="margin-bottom-1p5vw max-width-30em margin-top-6vw tablet-margin-bottom-3vw mobile-margin-bottom-5vw">
+                                Your vision, our expertise.<br /></h2>
+                            <p class="gray-text max-width-30em tablet-max-width-25em mobile-margin-bottom-8vw">
+                                CosmoCryptoVentures delivers custom blockchain solutions for innovators and
+                                entrepreneurs. Partner with our experienced team to transform your ideas into
+                                market-ready crypto products.</p>
+                        </div>
+                    </div>
+                    <div class="interchain-wrapper">
+                        <div class="s7-content-wrapper">
+                            <div class="max-width-25em dev-content-wrapper tablet-max-width-40em is-slide-in"><img
+                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fd9f_Plus.svg"
+                                    loading="lazy" alt="" class="margin-bottom-1p5vw tablet-margin-bottom-3vw" />
+                                <h3 class="margin-bottom-1p5vw tablet-margin-bottom-3vw">DeFi & Trading Platforms</h3>
+                                <p class="text-small gray-text">Custom decentralized exchanges, lending protocols, and
+                                    yield farming platforms with advanced security features and intuitive user
+                                    interfaces.</p>
+                            </div>
+                            <div class="max-width-25em dev-content-wrapper tablet-max-width-40em is-slide-in"><img
+                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fd9f_Plus.svg"
+                                    loading="lazy" alt="" class="margin-bottom-1p5vw tablet-margin-bottom-3vw" />
+                                    <h3 class="margin-bottom-1p5vw tablet-margin-bottom-3vw">DApp Development & AI Solutions</h3>
+                                    <p class="text-small gray-text">Expert development of decentralized applications (DApps) leveraging AI technologies for enhanced functionality and user experience.</p>
+                            </div>
+                            <div class="max-width-25em dev-content-wrapper tablet-max-width-40em is-slide-in"><img
+                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fd9f_Plus.svg"
+                                    loading="lazy" alt="" class="margin-bottom-1p5vw tablet-margin-bottom-3vw" />
+                                    <h3 class="margin-bottom-1p5vw tablet-margin-bottom-3vw">NFT Infrastructure</h3>
+                                    <p class="text-small gray-text">Comprehensive NFT marketplaces and cross-game asset systems that create new revenue streams and enhance user engagement.</p>
+                            </div><a id="w-node-_9c314dbb-ae86-e0e5-54e0-1be122554f9c-b019fd69"
+                                class="card-background-black relative card-flex fundraising-gradient card-build-hover is-slide-in w-inline-block">
+                                <div class="tag card margin-bottom-28vw mobile-margin-bottom-50vw">Consultation</div>
+                                <img src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdb5_Coin_color.svg"
+                                    loading="lazy" alt="" class="absolute i-coin-fundraising2" /><img
+                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdb5_Coin_color.svg"
+                                    loading="lazy" alt="" class="absolute i-coin-fundraising1" />
+                                 <h3 class="h3-mid margin-bottom-3vw mobile-margin-bottom-5vw">Transform your ideas</h3>
+                                <div class="w-embed">
+                                    <style>
+                                        @media only screen and (min-width: 992px) {
+                                            .card-background-black:hover .i-coin-fundraising1 {
+                                                transform: scale(0.9);
+                                            }
+
+                                            .card-background-black:hover .i-coin-fundraising2 {
+                                                transform: scale(0.9) rotate(35deg);
+                                            }
+                                        }
+                                    </style>
+                                </div>
+                            </a><a id="w-node-d0feb6ce-b275-abf8-1d16-3c6809df826d-b019fd69"
+                                target="_blank"
+                                class="card-background-black relative card-flex starport-gradient card-build-hover is-slide-in w-inline-block">
+                                <div class="tag card margin-bottom-28vw mobile-margin-bottom-50vw">Rapid Development
+                                </div><img
+                                    src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdc2_icon_planet_forceforcefield.svg"
+                                    loading="lazy" alt="Planet with a force field" class="absolute i-force-field" />
+                                <h3
+                                    class="h3-mid max-width-8em margin-bottom-3vw tablet-margin-bottom-6vw mobile-margin-bottom-5vw">
+                                    Launch your token in days.</h3>
+                                <div class="w-embed">
+                                    <style>
+                                        @media only screen and (min-width: 992px) {
+                                            .card-background-black:hover .absolute.i-force-field {
+                                                transform: scale(0.8) rotate(-20deg);
+                                            }
+                                        }
+                                    </style>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section s-network">
+                <div class="bg-8-wrapper overflow-visible"><img
+                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fde8_image%202.jpg"
+                        loading="lazy" alt="green star" class="star-s8" /><img
+                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fd9e_orbit%20block%201.svg"
+                        loading="lazy" alt="planetary orbit" class="orbit-s8" /><img
+                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdcb_planets-s8.svg"
+                        loading="lazy" alt="planetary system" class="planets-s8" /></div>
+                <div class="container w-container">
+                    <div class="technology-wrapper">
+                        <div class="s7-wrapper is-slide-in">
+                            <div class="s3-header-wrapper margin-bottom-5vw">
+                                <h2 class="tablet-margin-bottom-3vw">Transforming Your Vision into Blockchain Reality.<br /></h2>
+                            </div>
+                        </div>
+                        <div class="join-wrapper"><a target="_blank"
+                                class="card-background-black flex-vertical card-hover is-slide-in w-inline-block">
+                                <div class="tag card margin-bottom-3vw mobile-margin-bottom-5vw">Development</div>
+                                <h3 class="margin-bottom-1p5vw tablet-margin-bottom-3vw mobile-margin-bottom-8vw">
+                                    Custom Projects </h3>
+                                <div style="flex: 1;">
+                                    <p class="text-small margin-bottom-5vw">End-to-end development of custom projects including DeFi platforms, DApps, and AI agents, leveraging AI technologies for enhanced functionality and user experience.</p>
+                                </div>
+                                <div style="align-self: flex-start;">
+                                    <img src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdc7_connect.svg"
+                                        loading="lazy" alt="connect icon" class="network-icon" />
+                                </div>
+                            </a><a target="_blank"
+                                class="card-background-black flex-vertical card-hover is-slide-in w-inline-block">
+                                <div class="tag card margin-bottom-3vw mobile-margin-bottom-5vw">Strategy</div>
+                                <h3 class="margin-bottom-1p5vw tablet-margin-bottom-3vw mobile-margin-bottom-8vw">
+                                    Tokenomics & Planning </h3>
+                                <div style="flex: 1;">
+                                    <p class="text-small margin-bottom-5vw">Strategic design of token economics,
+                                        distribution models, and governance systems that drive sustainable project growth.
+                                    </p>
+                                </div>
+                                <div style="align-self: flex-start;">
+                                    <img src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdc8_services.svg"
+                                        loading="lazy" alt="services icon" class="network-icon" />
+                                </div>
+                            </a><a 
+                                class="card-background-black flex-vertical card-hover is-slide-in w-inline-block">
+                                <div class="tag card margin-bottom-3vw mobile-margin-bottom-5vw">Security</div>
+                                <h3 class="margin-bottom-1p5vw tablet-margin-bottom-3vw mobile-margin-bottom-8vw">Smart
+                                    Contract Audits </h3>
+                                <div style="flex: 1;">
+                                    <p class="text-small margin-bottom-5vw">Comprehensive security reviews to identify
+                                        vulnerabilities and ensure your crypto project meets industry-standard security
+                                        protocols.</p>
+                                </div>
+                                <div style="align-self: flex-start;">
+                                    <img src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdc9_validator.svg"
+                                        loading="lazy" alt="validator icon" class="network-icon" />
+                                </div>
+                            </a></div>
+                    </div>
+                </div>
+            </section>
+            <section class="section s-worldwide" id="about">
+                <div class="container w-container">
+                    <div class="worldwide-community-wrapper relative">
+                        <div class="community-wrapper">
+                            <div class="meet-community-wrapper max-width-30em tablet-margin-bottom-8vw is-slide-in">
+                                <h2 class="margin-bottom-5vw mobile-margin-bottom-5vw mobile-margin-bottom-8vw">Work
+                                    with industry specialists.<br /></h2>
+                                <p class="gray-text margin-bottom-3vw mobile-margin-bottom-8vw">Our team of blockchain
+                                    developers, designers, and strategists has successfully delivered over 30 crypto
+                                    projects across various sectors and blockchain ecosystems.</p><a
+                                    class="button button-secondary mobile-margin-bottom-8vw w-inline-block">
+                                    <div class="button-content-wrapper">
+                                        <div class="padding-right-p4em">Request Proposal</div>
+                                        <div class="arrow"></div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="community-grid"><a id="w-node-efc5a0a4-7992-8a24-3bb5-f1c884a04694-b019fd69"
+                                    target="_blank"
+                                    class="flex-horizontal align-top community-hover is-slide-in w-inline-block"><img
+                                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdcc_Telegram.svg"
+                                        loading="lazy" alt="telegram icon" class="community-icon margin-right-3vw" />
+                                    <div class="flex-vertical">
+                                        <div>
+                                            <div
+                                                class="button-secondary button-text-small margin-bottom-1vw mobile-margin-bottom-3vw">
+                                                Project Discovery Session </div>
+                                        </div>
+                                        <p class="dark-gray-text max-width-25em">Kickstart your crypto journey with a
+                                            comprehensive planning workshop to define objectives and technical
+                                            requirements.</p>
+                                    </div>
+                                </a><a
+                                    class="flex-horizontal align-top community-hover is-slide-in w-inline-block"><img
+                                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdcd_Twitter.svg"
+                                        loading="lazy" alt="twitter icon" class="community-icon margin-right-3vw" />
+                                    <div class="flex-vertical">
+                                        <div
+                                            class="button-secondary button-text-small margin-bottom-1vw mobile-margin-bottom-3vw">
+                                            Market Entry Strategy </div>
+                                        <p class="dark-gray-text max-width-25em">Get expert guidance on positioning your
+                                            project in the competitive crypto landscape with tailored marketing and
+                                            launch strategies.</p>
+                                    </div>
+                                </a><a target="_blank"
+                                    class="flex-horizontal align-top community-hover is-slide-in w-inline-block"><img
+                                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdce_Discord.svg"
+                                        loading="lazy" alt="discord icon" class="community-icon margin-right-3vw" />
+                                    <div class="flex-vertical">
+                                        <div
+                                            class="button-secondary button-text-small margin-bottom-1vw mobile-margin-bottom-3vw">
+                                            Development Roadmap </div>
+                                        <p class="dark-gray-text max-width-25em">Receive a detailed implementation plan
+                                            with milestones, technical specifications, and resource allocation for your
+                                            crypto project.</p>
+                                    </div>
+                                </a><a target="_blank"
+                                    class="flex-horizontal align-top community-hover is-slide-in w-inline-block"><img
+                                        src="https://cdn.prod.website-files.com/67dc0e2fbba8f404b019fced/67dc0e30bba8f404b019fdcf_Cosmos.svg"
+                                        loading="lazy" alt="Cosmos icon" class="community-icon margin-right-3vw" />
+                                    <div class="flex-vertical">
+                                        <div
+                                            class="button-secondary button-text-small margin-bottom-1vw mobile-margin-bottom-3vw">
+                                            Post-Launch Support </div>
+                                        <p class="dark-gray-text max-width-25em">Ongoing technical assistance, updates,
+                                            and optimization services to ensure your project's long-term success in the
+                                            market.</p>
+                                    </div>
+                                </a></div>
+                        </div>
+                        <div class="corner-bottom-left"></div>
+                        <div class="padding-right-p4em"></div>
+                    </div>
+                </div>
+            </section>
+
             <section class="section margin-bottom-10vw">
                 <div class="container w-container"><a href="#"
                         class="youtube-holder is-slide-in w-inline-block w-lightbox">
@@ -932,6 +1305,8 @@
     }</script>
                     </a></div>
             </section>
+
+            
 
         </main>
         <footer class="section footer">
@@ -1038,6 +1413,88 @@
         $('.counter').counterUp({
             delay: 20,
             time: 1500
+        });
+    </script>
+    
+    <!-- Smooth scrolling for navigation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all navigation links with hash
+            const navLinks = document.querySelectorAll('.nav-links-wrapper a[href^="#"]');
+            
+            // Add click event listener to each navigation link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Prevent default anchor click behavior
+                    e.preventDefault();
+                    
+                    // Get the target section id from the href
+                    const targetId = this.getAttribute('href');
+                    
+                    // Get the target element
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Calculate the distance to scroll
+                        const offsetTop = targetElement.offsetTop;
+                        
+                        // Smooth scroll to the target section
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    
+    <!-- Mobile Menu Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            const body = document.body;
+            
+            // Toggle mobile menu when hamburger is clicked
+            hamburgerMenu.addEventListener('click', function() {
+                hamburgerMenu.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                body.style.overflow = body.style.overflow === 'hidden' ? '' : 'hidden';
+            });
+            
+            // Close menu when a nav link is clicked
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get the target section id from the href
+                    const targetId = this.getAttribute('href');
+                    
+                    // Close the mobile menu
+                    hamburgerMenu.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    body.style.overflow = '';
+                    
+                    // Get the target element
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Short delay to allow menu to close first
+                        setTimeout(() => {
+                            // Calculate the distance to scroll
+                            const offsetTop = targetElement.offsetTop;
+                            
+                            // Smooth scroll to the target section
+                            window.scrollTo({
+                                top: offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }, 300);
+                    }
+                });
+            });
         });
     </script>
 </body>
